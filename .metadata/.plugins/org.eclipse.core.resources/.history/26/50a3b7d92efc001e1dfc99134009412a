@@ -1,0 +1,92 @@
+package jugs;
+
+public class Table {
+	private Jug left; //Creating a provisional object Jug
+	private Jug right;
+	
+	public enum Position{
+		Right, Left
+	};
+	
+	
+	public Table(int leftCapacity, int rightCapacity) {
+		left=new Jug(leftCapacity);//Constructor table that take in account two objects Jug
+		right=new Jug(rightCapacity);
+		if(leftCapacity==rightCapacity) {
+			throw new RuntimeException("Same value");
+		}
+	}
+	
+	public int getCapacity(Position p) {
+		switch(p) {
+		case Right:
+			return this.right.capacity();
+		case Left:
+			return this.left.capacity();
+		 default:
+			throw new RuntimeException("ERROR");
+			
+
+		}
+	}
+	
+	public int getContent(Position p) {
+		switch(p) {
+		case Right:
+			return this.right.content();
+		case Left:
+			return this.left.content();
+		default:
+			throw new RuntimeException("ERROR");
+		
+	}
+	}
+		public void fill(Position p) {
+			switch(p) {
+			case Right:
+				 this.right.fill();;
+				 break;
+			case Left:
+				 this.left.fill();
+				 break;
+			
+		}
+			
+			
+	}
+		
+		public void empty(Position p) {
+			switch(p) {
+			case Right:
+				 this.right.empty();
+				 break;
+			case Left:
+				 this.left.empty();
+				 break;
+			default:
+				throw new RuntimeException("ERROR");
+		}
+			
+	
+}
+		public void pourFrom(Position p) {
+			switch(p) {
+			case Right:
+				right.pourFrom(left);
+				break;
+			case Left:
+				left.pourFrom(right);
+				break;
+			default:
+				throw new RuntimeException("ERROR");
+			}
+			
+	}
+
+		public String toString() {
+			String message="T("+left.toString()+","+right.toString()+")";
+			return message;
+		}
+		
+		
+}
